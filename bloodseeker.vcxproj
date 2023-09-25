@@ -130,6 +130,9 @@
   <ItemGroup>
     <ClCompile Include="Source.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\Module-Code\Module-89\HellsHall\Hell%27sHall\Hell%27sHall\Resource.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

