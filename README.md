@@ -8,5 +8,5 @@ bloodseeker.exe
     
  2. Used `fgets` function to get a string input and then used it to write the string to the registry file. The operator can now enter custom payload in the program.
 ## Output
-![image](https://github.com/hookthieves/bloodseeker/assets/46670348/1bb20fdd-48bf-4046-b279-0c05abb73401)
+![image](https://github.com/hookthieves/bloodseeker/assets/46670348/e6e2cae1-7ce8-4bc9-bb59-9a4994fd9737)
 
